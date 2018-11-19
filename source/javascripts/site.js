@@ -1,14 +1,16 @@
 // declaring DOM variables
-let rock, paper, scissors
+let rock, paper, scissors, p_points
 
 // declaring global variables
-let userChoice, computerChoice, points
+let userChoice, computerChoice
+let points = 0
 
 // setting DOM variables when the DOM is loaded
 document.addEventListener('DOMContentLoaded', event => {
     rock = document.querySelector('#rock')
     paper = document.querySelector('#paper')
     scissors = document.querySelector('#scissors')
+    p_points = document.querySelector('#points')
 
     rock.addEventListener('click', event => {
         userChoice = 'rock'
@@ -46,27 +48,29 @@ const determineWinner = () => {
     if (userChoice == computerChoice) {
         console.log('It is a tie!')
     } else if (userChoice == 'rock' && computerChoice == 'paper') {
-        console.log('Computer wins!')
         gameOver()
     } else if (userChoice == 'rock' && computerChoice == 'scissors') {
-        console.log('Computer wins!')
-        gameOver()
+        addPoints()
     } else if (userChoice == 'paper' && computerChoice == 'rock') {
-        console.log('User wins!')
+        addPoints()
     } else if (userChoice == 'paper' && computerChoice == 'scissors') {
-        console.log('Computer wins!')
         gameOver()
     } else if (userChoice == 'scissors' && computerChoice == 'paper') {
-        console.log('User wins!')
+        addPoints()
     } else if (userChoice == 'scissors' && computerChoice == 'rock') {
-        console.log('Computer wins!')
         gameOver()
     }
     console.log(`${userChoice} and ${computerChoice}`)
 }
 
-const gameOver = () => {
+const addPoints = () => {
+    points++
+    p_points.innerHTML = `You have ${points} points`
+}
 
+const gameOver = () => {
+    points = 0
+    p_points.innerHTML = `You have ${points} points`
 }
 
 randomize()
