@@ -1,7 +1,9 @@
 // declaring DOM variables
 let rock, paper, scissors
+
 // declaring global variables
-let userChoice, computerChoice
+let userChoice, computerChoice, points
+
 // setting DOM variables when the DOM is loaded
 document.addEventListener('DOMContentLoaded', event => {
     rock = document.querySelector('#rock')
@@ -24,6 +26,7 @@ document.addEventListener('DOMContentLoaded', event => {
     })
 })
 
+// this function decides the value of computerChoice variable
 const randomize = () => {
     let number = Math.floor(Math.random() * 3)
     switch(number) {
@@ -60,6 +63,10 @@ const determineWinner = () => {
         gameOver()
     }
     console.log(`${userChoice} and ${computerChoice}`)
+}
+
+const gameOver = () => {
+
 }
 
 randomize()
