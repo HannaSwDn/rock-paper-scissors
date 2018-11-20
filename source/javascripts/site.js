@@ -3,7 +3,8 @@ let rock, paper, scissors, p_points, div_update
 
 // declaring global variables
 let userChoice, computerChoice
-let points = 0
+let userPoints = 0
+let computerPoints = 0
 
 // setting DOM variables when the DOM is loaded
 document.addEventListener('DOMContentLoaded', event => {
@@ -50,38 +51,52 @@ const randomize = () => {
 
 const determineWinner = () => {
     if (userChoice == computerChoice) {
-        console.log('It is a tie!')
+        tie()
     } else if (userChoice == 'rock' && computerChoice == 'paper') {
-        gameOver()
+        // gameOver()
+        addComputerPoints()
+        update()
     } else if (userChoice == 'rock' && computerChoice == 'scissors') {
-        addPoints()
+        addUserPoints()()
         update()
     } else if (userChoice == 'paper' && computerChoice == 'rock') {
-        addPoints()
+        addUserPoints()
         update()
     } else if (userChoice == 'paper' && computerChoice == 'scissors') {
-        gameOver()
+        // gameOver()
+        addComputerPoints()
+        update()
     } else if (userChoice == 'scissors' && computerChoice == 'paper') {
-        addPoints()
+        addUserPoints()
         update()
     } else if (userChoice == 'scissors' && computerChoice == 'rock') {
-        gameOver()
+        // gameOver()
+        addComputerPoints()
+        update()
     }
-    console.log(`${userChoice} and ${computerChoice}`)
+}
+
+const addUserPoints = () => {
+    userPoints++
+    p_points.innerHTML = `You have ${userPoints} points, computer has ${computerPoints} points`
+}
+
+const addComputerPoints = () => {
+    computerPoints++
+    p_points.innerHTML = `You have ${userPoints} points, computer has ${computerPoints} points`
+}
+
+const tie = () => {
+    div_update.style.backgroundColor = 'lightblue'
+    div_update.style.height = '15vh'
+    div_update.innerHTML = `You chose ${userChoice}, computer chose ${computerChoice}`
 }
 
 const update = () => {
     div_update.style.backgroundColor = 'lightgreen'
     div_update.style.height = '15vh'
     div_update.innerHTML = `You chose ${userChoice}, computer chose ${computerChoice}`
-    setTimeout(function(){
-        div_update.style.height = '0vh'
-    }, 1500);
-}
-
-const addPoints = () => {
-    points++
-    p_points.innerHTML = `You have ${points} points`
+    p_points.innerHTML = `You have ${userPoints} points, computer has ${computerPoints} points`
 }
 
 const gameOver = () => {
