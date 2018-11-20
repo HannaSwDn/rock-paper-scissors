@@ -57,19 +57,16 @@ const determineWinner = () => {
     if (userChoice == computerChoice) {
         tie()
     } else if (userChoice == 'rock' && computerChoice == 'paper') {
-        // gameOver()
         addComputerPoints()
     } else if (userChoice == 'rock' && computerChoice == 'scissors') {
         addUserPoints()
     } else if (userChoice == 'paper' && computerChoice == 'rock') {
         addUserPoints()
     } else if (userChoice == 'paper' && computerChoice == 'scissors') {
-        // gameOver()
         addComputerPoints()
     } else if (userChoice == 'scissors' && computerChoice == 'paper') {
         addUserPoints()
     } else if (userChoice == 'scissors' && computerChoice == 'rock') {
-        // gameOver()
         addComputerPoints()
     }
 }
@@ -80,7 +77,6 @@ const addUserPoints = () => {
         win()
     } else {
         div_update.style.backgroundColor = 'lightgreen'
-        p_points.innerHTML = `You have ${userPoints} points, computer has ${computerPoints} points`
         update()
     }
 }
@@ -91,7 +87,6 @@ const addComputerPoints = () => {
         gameOver()
     } else {
         div_update.style.backgroundColor = 'red'
-        p_points.innerHTML = `You have ${userPoints} points, computer has ${computerPoints} points`
         update()
     }
 }
@@ -103,6 +98,7 @@ const tie = () => {
 
 const update = () => {
     div_update.innerHTML = `You chose ${userChoice}, computer chose ${computerChoice}`
+    p_points.innerHTML = `You have ${userPoints} points, computer has ${computerPoints} points`
 }
 
 const win = () => {
@@ -116,7 +112,8 @@ const gameOver = () => {
 }
 
 const playAgain = () => {
-    points = 0
+    userPoints = 0
+    computerPoints = 0
     div_win.style.display = 'none'
     div_gameover.style.display = 'none'
     p_points.innerHTML = ''
