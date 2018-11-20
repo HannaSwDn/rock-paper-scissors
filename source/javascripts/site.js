@@ -1,5 +1,5 @@
 // declaring DOM variables
-let rock, paper, scissors, p_points, div_update, div_gameover
+let rock, paper, scissors, p_points, div_update, div_gameover, div_win, gameover_points, win_points
 
 // declaring global variables
 let userChoice, computerChoice
@@ -14,6 +14,9 @@ document.addEventListener('DOMContentLoaded', event => {
     p_points = document.querySelector('#points')
     div_update = document.querySelector('#update')
     div_gameover = document.querySelector('#gameover')
+    div_win = document.querySelector('#win')
+    gameover_points = document.querySelector('#gameover_points')
+    win_points = document.querySelector('#win_points')
 
     rock.addEventListener('click', event => {
         userChoice = 'rock'
@@ -73,17 +76,24 @@ const determineWinner = () => {
 
 const addUserPoints = () => {
     userPoints++
-    div_update.style.backgroundColor = 'lightgreen'
-    p_points.innerHTML = `You have ${userPoints} points, computer has ${computerPoints} points`
-    update()
-    endGame()
+    if (userPoints == 3) {
+        win()
+    } else {
+        div_update.style.backgroundColor = 'lightgreen'
+        p_points.innerHTML = `You have ${userPoints} points, computer has ${computerPoints} points`
+        update()
+    }
 }
 
 const addComputerPoints = () => {
     computerPoints++
-    div_update.style.backgroundColor = 'red'
-    p_points.innerHTML = `You have ${userPoints} points, computer has ${computerPoints} points`
-    update()
+    if (computerPoints == 3) {
+        gameOver()
+    } else {
+        div_update.style.backgroundColor = 'red'
+        p_points.innerHTML = `You have ${userPoints} points, computer has ${computerPoints} points`
+        update()
+    }
 }
 
 const tie = () => {
@@ -98,9 +108,11 @@ const update = () => {
 const win = () => {
     points = 0
     div_win.style.display = 'block'
+    win_points.innerHTML = `You win with ${userPoints} - ${computerPoints}!`
 }
 
 const gameOver = () => {
     points = 0
     div_gameover.style.display = 'block'
+    gameover_points.innerHTML = `computer wins with ${computerPoints} - ${userPoints}...`
 }
