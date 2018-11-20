@@ -1,5 +1,5 @@
 // declaring DOM variables
-let rock, paper, scissors, p_points, div_update
+let rock, paper, scissors, p_points, div_update, div_gameover
 
 // declaring global variables
 let userChoice, computerChoice
@@ -13,6 +13,7 @@ document.addEventListener('DOMContentLoaded', event => {
     scissors = document.querySelector('#scissors')
     p_points = document.querySelector('#points')
     div_update = document.querySelector('#update')
+    div_gameover = document.querySelector('#gameover')
 
     rock.addEventListener('click', event => {
         userChoice = 'rock'
@@ -55,53 +56,44 @@ const determineWinner = () => {
     } else if (userChoice == 'rock' && computerChoice == 'paper') {
         // gameOver()
         addComputerPoints()
-        update()
     } else if (userChoice == 'rock' && computerChoice == 'scissors') {
         addUserPoints()()
-        update()
     } else if (userChoice == 'paper' && computerChoice == 'rock') {
         addUserPoints()
-        update()
     } else if (userChoice == 'paper' && computerChoice == 'scissors') {
         // gameOver()
         addComputerPoints()
-        update()
     } else if (userChoice == 'scissors' && computerChoice == 'paper') {
         addUserPoints()
-        update()
     } else if (userChoice == 'scissors' && computerChoice == 'rock') {
         // gameOver()
         addComputerPoints()
-        update()
     }
 }
 
 const addUserPoints = () => {
     userPoints++
+    div_update.style.backgroundColor = 'lightgreen'
     p_points.innerHTML = `You have ${userPoints} points, computer has ${computerPoints} points`
+    update()
 }
 
 const addComputerPoints = () => {
     computerPoints++
     p_points.innerHTML = `You have ${userPoints} points, computer has ${computerPoints} points`
+    update()
 }
 
 const tie = () => {
     div_update.style.backgroundColor = 'lightblue'
-    div_update.style.height = '15vh'
-    div_update.innerHTML = `You chose ${userChoice}, computer chose ${computerChoice}`
+    update()
 }
 
 const update = () => {
-    div_update.style.backgroundColor = 'lightgreen'
-    div_update.style.height = '15vh'
     div_update.innerHTML = `You chose ${userChoice}, computer chose ${computerChoice}`
-    p_points.innerHTML = `You have ${userPoints} points, computer has ${computerPoints} points`
 }
 
 const gameOver = () => {
     points = 0
-    div_update.style.backgroundColor = 'red'
-    div_update.innerHTML = `You chose ${userChoice}, computer chose ${computerChoice}... game over`
-    p_points.innerHTML = `You have ${points} points`
+    div_gameover.style.display = 'block'
 }
