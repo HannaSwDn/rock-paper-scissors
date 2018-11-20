@@ -106,13 +106,20 @@ const update = () => {
 }
 
 const win = () => {
-    points = 0
     div_win.style.display = 'block'
     win_points.innerHTML = `You win with ${userPoints} - ${computerPoints}!`
 }
 
 const gameOver = () => {
-    points = 0
     div_gameover.style.display = 'block'
     gameover_points.innerHTML = `computer wins with ${computerPoints} - ${userPoints}...`
+}
+
+const playAgain = () => {
+    points = 0
+    div_win.style.display = 'none'
+    div_gameover.style.display = 'none'
+    p_points.innerHTML = ''
+    div_update.innerHTML = ''
+    div_update.style.backgroundColor = 'lightgreen'
 }
